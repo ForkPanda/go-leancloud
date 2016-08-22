@@ -20,11 +20,11 @@ func NewObject() *Object {
 	return o
 }
 
-func FetchObject(cloud *Client, className, objectId, include string) (*Object, error) {
+func FetchObject(cloud *Client, className, objectId string, params map[string]string) (*Object, error) {
 	if className == "" || objectId == "" {
 		return nil, ErrNoObjectIdOrClassName
 	}
-	r, err := cloud.getObject(className, objectId, include)
+	r, err := cloud.getObject(className, objectId, params)
 	if err != nil {
 		return nil, err
 	}

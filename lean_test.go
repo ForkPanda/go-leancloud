@@ -49,7 +49,7 @@ func TestObject(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	o2, err := FetchObject(cloud, className, o1.ObjectId(), "")
+	o2, err := FetchObject(cloud, className, o1.ObjectId(), nil)
 	if err != nil {
 		t.Fatal(err)
 	}

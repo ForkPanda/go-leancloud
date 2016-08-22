@@ -12,9 +12,11 @@ func (cloud *Client) createObject(className, jsonData string) (*result, error) {
 	return cloud.httpPost(cloud.makeClassURL(className), jsonData)
 }
 
-func (cloud *Client) getObject(className, objectId, include string) (*result, error) {
+func (cloud *Client) getObject(className, objectId string, params map[string]string) (*result, error) {
 	p := url.Values{}
-	p.Add("include", include)
+	for key, value := range params {
+		p.Add(key, value)
+	}
 	url := cloud.makeClassURL(className, objectId)
 	return cloud.httpGet(url, p)
 }
