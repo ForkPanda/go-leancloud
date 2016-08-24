@@ -18,10 +18,21 @@ func NewUser() *User {
 }
 
 func (u *User) Register(cloud *Client, username, password, email, phone string) (*result, error) {
-	u.Set("username", username)
+	if len(password) == 0 || len(phone) == 0 {
+		return nil, errors.New("password or phone could not be nil")
+	}
+
 	u.Set("password", password)
-	u.Set("email", email)
 	u.Set("mobilePhoneNumber", phone)
+
+	if len(username) != 0 {
+		u.Set("username", username)
+	}
+
+	if len(email) != 0 {
+		u.Set("email", email)
+	}
+
 	url := cloud.makeURLPrefix(userBaseURL)
 	return cloud.httpPost(url, u.Encode())
 }

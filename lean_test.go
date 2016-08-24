@@ -76,12 +76,12 @@ func TestDate(t *testing.T) {
 
 func TestUser(t *testing.T) {
 	u1 := NewUser()
-	email := fmt.Sprintf("%s@email.com", randString())
+	// email := fmt.Sprintf("%s@email.com", randString())
 	phone := fmt.Sprintf("1386818%0d%0d", rand.Intn(99), rand.Intn(99))
 	t.Log(phone)
 	username := randString()
 	password := "password"
-	r1, err := u1.Register(cloud, username, password, email, phone)
+	r1, err := u1.Register(cloud, username, password, "", phone)
 	if err != nil {
 		t.Fatal(r1, err)
 	}
